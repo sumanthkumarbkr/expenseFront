@@ -7,7 +7,6 @@ import {
 	Button, Card, Modal, Dialog,
 	DialogActions,
 	DialogContent,
-	DialogContentText,
 	DialogTitle, CardActions, Container, CardContent, Grid, Box, Typography, TextField, InputAdornment,
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
@@ -93,7 +92,7 @@ function App() {
 	}
 	const deleteExpense = (id) => {
 		console.log(id,"id")
-		axios.delete(url + '/' + id)
+		axios.delete( url + '/' + id)
 			.then(res => {
 				getalldetails();
 			});
@@ -170,7 +169,9 @@ function App() {
 							type="Date"
 							label="Date"
 							name='date'
-							format={"MMM Do YY"}
+							InputLabelProps={{
+								shrink: true,
+							  }}
 							onChange={inputsHandler}
 							variant="outlined"
 							value={inputField.date}
@@ -188,10 +189,9 @@ function App() {
 								</Typography>
 								<br></br>
 								<Typography >
-									<b >{user.title}</b>
+									<b>{user.title}</b>
 									<span style={{ float: "right" }}>₹{user.amount}
 									</span>
-
 								</Typography>
 								<br></br>
 								<Typography >
@@ -218,9 +218,9 @@ function App() {
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
 			>
-				<DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+				<DialogTitle id="alert-dialog-title">{"Update Expense"}</DialogTitle>
 				<DialogContent>
-					<form autoComplete="off" className='form'>
+					<form autoComplete="off" className='forms'>
 						<TextField
 							margin="dense"
 							required
@@ -261,16 +261,20 @@ function App() {
 							name='updateDate'
 							onChange={updateHandler}
 							variant="outlined"
+							InputLabelProps={{
+								shrink: true,
+							  }}
+							defaultValue={updateField.updateDate}
 							value={updateField.updateDate}
 						/>
 					</form>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={updateExpense} color="primary">
-						update
+						UPDATE
           </Button>
 					<Button onClick={clear, handleClose} color="primary" autoFocus>
-						cancl
+					CANCEL
           </Button>
 				</DialogActions>
 			</Dialog>
